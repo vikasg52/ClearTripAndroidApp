@@ -1,0 +1,9 @@
+<Suite name="ClearTrip RoundTrip Booking Automation">
+    <Test name="Flight Booking on ClearTrip:By Vikas Garg:9560684096">
+        <classes>
+            <class>
+                
+            </class>
+        </classes>
+    </Test>
+</Suite>
