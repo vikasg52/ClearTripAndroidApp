@@ -1,5 +1,6 @@
 package gojek.automation.cleartrip;
 
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -20,6 +21,7 @@ public class RoundTripBookingTest {
 	@Test
 	public void bookRoundTrip() throws InterruptedException{
 		System.out.println("Test Started.....");
+		
 		wd.WaitForDisplay(test.AllowLocation);
 		wd.tap(test.AllowLocation);
 		wd.WaitForDisplay(test.selectTravel);
@@ -28,20 +30,24 @@ public class RoundTripBookingTest {
 		wd.tap(test.Fromcity);
 		wd.tap(test.searchCity);
 		wd.type(test.searchCity,"Delhi");
-		wd.selectfrommenu(test.citySelected, 0);
-		//wd.selectfrommenu(test.city, 0);
+		wd.tap(test.citySelectedDel);
 		wd.WaitForDisplay(test.Tocity);
 		wd.tap(test.Tocity);
 		wd.tap(test.searchCity);
 		wd.type(test.searchCity, "Bangalore");
-		wd.selectfrommenu(test.citySelected, 0);
-		wd.tap(test.tapDepartDate);
-		wd.tap(test.chooseDatefrom);
+		wd.tap(test.citySelectedBlr);
+		wd.WaitForDisplay(test.tapDatefrom);
+		wd.tap(test.tapDatefrom);
+		wd.tap(test.chooseDepartDate);
 		wd.tap(test.chooseReturnDate);
-		wd.tap(test.tapSelectioncorrect);
 		wd.tap(test.TapTravelClass);
 		wd.tap(test.ChooseTravelClass);
 		wd.swipeUpElement(test.Scrollup, 2000);
+		wd.tap(test.ClickSearchFlight);
+		wd.WaitForDisplay(test.book);
+		wd.SelectOption(test.selectToFlight);
+		wd.SelectOption(test.selectReturnFlight);
+		wd.tap(test.book);
 			
 	}
 	

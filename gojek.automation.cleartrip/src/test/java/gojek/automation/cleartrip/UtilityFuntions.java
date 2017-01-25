@@ -2,12 +2,14 @@ package gojek.automation.cleartrip;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -15,12 +17,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 
 public class UtilityFuntions {
-	public static AndroidDriver driver;
+	public static AndroidDriver<AndroidElement> driver;
 	
-        public AndroidDriver LaunchApp(){
+        public AndroidDriver<AndroidElement> LaunchApp(){
 		if(driver==null){
 			DesiredCapabilities cap= new DesiredCapabilities();
 			File app = new File(System.getProperty("user.dir")+"\\src\\test\\resources\\cleartrip.apk");
@@ -31,7 +35,7 @@ public class UtilityFuntions {
 			cap.setCapability("app",app.getAbsolutePath());
 			try {
 				System.out.println("Launching the app...");
-				driver= new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),cap);
+				driver= new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"),cap);
 				driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 				} catch (MalformedURLException e1) {
 				System.out.println("could not start hub due to: "+e1.getMessage());
@@ -43,7 +47,7 @@ public class UtilityFuntions {
 	public void tap(By by){
 		driver.findElement(by).click();
 	}
-	public AndroidDriver driver(AndroidDriver driver){
+	public AndroidDriver<?> driver(AndroidDriver<?> driver){
 		return driver;
 	}
 	
@@ -68,11 +72,14 @@ public class UtilityFuntions {
 			driver.context(maincontext);
 			return maincontext;
 		}
+		public void SelectOption(By by){
+		List<AndroidElement> list = driver.findElements(by);
+		list.get(0).click();
+		}
 	
-	public void selectfrommenu(String e, int index){
-		Select select =new Select(driver.findElement(By.xpath(e)));
-		select.selectByIndex(index);
-		
+	public void moveto(WebElement e){
+		TouchAction t = new TouchAction(driver);
+		t.moveTo(e).perform();
 	}
 	
 	public void datepick(MobileBy by){
