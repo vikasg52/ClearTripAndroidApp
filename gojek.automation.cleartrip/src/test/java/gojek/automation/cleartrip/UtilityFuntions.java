@@ -1,91 +1,101 @@
 package gojek.automation.cleartrip;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
 public class UtilityFuntions {
-	public AndroidDriver driver=null;
+	public static AndroidDriver driver;
 	
-	public AndroidDriver LaunchApp(AndroidDriver driver){
+        public AndroidDriver LaunchApp(){
 		if(driver==null){
 			DesiredCapabilities cap= new DesiredCapabilities();
 			File app = new File(System.getProperty("user.dir")+"\\src\\test\\resources\\cleartrip.apk");
 			cap.setCapability("platformVersion", "Android");
-			cap.setCapability("deviceName", "VikasMicromax");
-			cap.setCapability("platformVersion", "6.0");
-			cap.setCapability("platformVersion", "Android");
-			cap.setCapability("app", app.getAbsolutePath());
-					try {
-						System.out.println("Launching the app...");
-						driver= new AndroidDriver(new URL("http://localhost:4723/wd/hub"),cap);
-					} catch (MalformedURLException e1) {
-						System.out.println("could not start hub due to: "+e1.getMessage());
-					}
-					driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-					System.out.println("App Launched successfulyy...");
-		}
+			cap.setCapability("deviceName","MPDQWW4161117007847");
+			cap.setCapability("platformVersion","6.0");
+			cap.setCapability("platformVersion","Android");
+			cap.setCapability("app",app.getAbsolutePath());
+			try {
+				System.out.println("Launching the app...");
+				driver= new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),cap);
+				driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+				} catch (MalformedURLException e1) {
+				System.out.println("could not start hub due to: "+e1.getMessage());
+			}
+		  }
 		return driver;
-	 }
+      }
 	
-	public void tap(AndroidDriver driver, By by){
+	public void tap(By by){
 		driver.findElement(by).click();
 	}
-	public void WaitForDisplay(AndroidDriver driver, By by){
+	public AndroidDriver driver(AndroidDriver driver){
+		return driver;
+	}
+	
+	public void WaitForDisplay(By by){
 		WebDriverWait w= new WebDriverWait(driver, 120);
 		w.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
-	
-	public static void WaitForClickable(AndroidDriver driver, By by){
+
+	public static void WaitForClickable(By by){
 		WebDriverWait w= new WebDriverWait(driver, 90);
 		w.until(ExpectedConditions.elementToBeClickable(by));
 	}
 	
-	public void switchWindow(AndroidDriver driver){
-		Set<String> popup= driver.getWindowHandles();
-		for(String pop:popup){
-			driver.switchTo().window(pop);
+	public void switchContext(){
+		Set<String> contexts= driver.getContextHandles();
+		for(String context:contexts){
+			driver.context(context);
 		}
 	}
-		public String SwitchToMain(AndroidDriver driver){
-			String fbloginwindow = driver.getWindowHandle();
-			driver.switchTo().window(fbloginwindow);
-			return fbloginwindow;
+		public String SwitchToMain(){
+			String maincontext = driver.getContext();
+			driver.context(maincontext);
+			return maincontext;
 		}
 	
-	public void selectfrommenu(AndroidDriver driver, MobileElement e, int index){
-		Select select =new Select(e);
+	public void selectfrommenu(String e, int index){
+		Select select =new Select(driver.findElement(By.xpath(e)));
 		select.selectByIndex(index);
 		
 	}
 	
-	public void type(AndroidDriver driver, By by, String s){
+	public void datepick(MobileBy by){
+		Point p1=driver.findElement(by).getLocation();
+		Dimension d1 = driver.findElement(by).getSize();
+        driver.tap(1, p1.getX()+ d1.getWidth(), p1.getY() + d1.getHeight()-100, 500);
+	}
+	public void type(By by, String s){
 		driver.findElement(by).sendKeys(s);
 	}
-	public void Clear(AndroidDriver driver, By by){
+	public void swipeUpElement(By by, int duration) throws InterruptedException{
+	    int topY = driver.findElement(by).getLocation().getY();
+		int bottomY = topY+driver.findElement(by).getSize().getHeight();
+		int centerX = driver.findElement(by).getLocation().getX() + (driver.findElement(by).getSize().getWidth()/2);
+		driver.swipe(centerX, bottomY-100, centerX, topY,duration);
+		Thread.sleep(1000);
+	}
+	
+	public void Clear(By by){
 		driver.findElement(by).clear();
 	}
 	
-	public void QuitSession(AndroidDriver driver){
+	public void QuitSession(){
 		if(driver!=null)
 		driver.quit();
 	}
