@@ -3,7 +3,7 @@ package gojek.automation.cleartrip;
 import org.openqa.selenium.By;
 
 public class TestObjects {
-	public By AllowLocation       = By.name("Allow");
+	public By AllowLocation       = By.id("com.android.packageinstaller:id/permission_allow_button");
 	public By selectTravel        =  By.id("RoundTripBookingTest");
 	public By RounTripRadiobtn    =  By.id("com.cleartrip.android:id/fhf_roundtrip");
 	public By Fromcity            =  By.id("com.cleartrip.android:id/txt_from_city");

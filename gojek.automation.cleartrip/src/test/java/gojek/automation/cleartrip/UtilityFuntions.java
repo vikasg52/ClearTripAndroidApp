@@ -50,8 +50,8 @@ public class UtilityFuntions {
 	public void tap(AndroidDriver driver, By by){
 		driver.findElement(by).click();
 	}
-	public static void WaitForDisplay(AndroidDriver driver, By by){
-		WebDriverWait w= new WebDriverWait(driver, 90);
+	public void WaitForDisplay(AndroidDriver driver, By by){
+		WebDriverWait w= new WebDriverWait(driver, 120);
 		w.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
 	

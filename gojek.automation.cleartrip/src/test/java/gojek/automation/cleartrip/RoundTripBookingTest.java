@@ -16,9 +16,11 @@ public class RoundTripBookingTest {
 		wd.LaunchApp(driver);
 	}
 	
-	@Test(dependsOnMethods={"AppLaunched"})
+	@Test
 	public void bookRoundTrip(){
 	//select travel option
+		wd.tap(driver,TO.AllowLocation);
+		wd.WaitForDisplay(driver, TO.selectTravel);
 		wd.tap(driver, TO.selectTravel);
 		wd.tap(driver,TO.AllowLocation);
 		wd.tap(driver,TO.RounTripRadiobtn);
