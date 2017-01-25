@@ -6,23 +6,32 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.android.AndroidDriver;
 
-public class RoundTripBookingTest extends UtilityFuntions{
+public class RoundTripBookingTest {
 	AndroidDriver driver;
-	RoundTripBookingTest t= new RoundTripBookingTest();
+	UtilityFuntions wd = new UtilityFuntions();
+	TestObjects TO= new TestObjects();
+	
 	@BeforeTest
 	public void AppLaunched(){
-		t.LaunchApp(driver);
+		wd.LaunchApp(driver);
 	}
 	
-	@Test
+	@Test(dependsOnMethods={"AppLaunched"})
 	public void bookRoundTrip(){
-	
-		
+	//select travel option
+		wd.tap(driver, TO.selectTravel);
+		wd.tap(driver,TO.AllowLocation);
+		wd.tap(driver,TO.RounTripRadiobtn);
+		wd.tap(driver, TO.Fromcity);
+		wd.tap(driver, TO.Tocity);
+		wd.tap(driver, TO.searchCity);
+		wd.type(driver, TO.searchCity, "Delhi");
+			
 	}
 	
 	@AfterTest
 	public void closeApp(){
-		t.QuitSession(driver);
+		wd.QuitSession(driver);
 	}
 
 }
