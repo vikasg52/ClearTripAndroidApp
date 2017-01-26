@@ -77,16 +77,13 @@ public class UtilityFuntions {
 		list.get(0).click();
 		}
 	
-	public void moveto(WebElement e){
-		TouchAction t = new TouchAction(driver);
-		t.moveTo(e).perform();
+	public boolean isenabled(By e){
+		return driver.findElement(e).isEnabled();
+	}
+	public boolean displayed(By by){
+		return driver.findElement(by).isDisplayed();
 	}
 	
-	public void datepick(MobileBy by){
-		Point p1=driver.findElement(by).getLocation();
-		Dimension d1 = driver.findElement(by).getSize();
-        driver.tap(1, p1.getX()+ d1.getWidth(), p1.getY() + d1.getHeight()-100, 500);
-	}
 	public void type(By by, String s){
 		driver.findElement(by).sendKeys(s);
 	}
@@ -94,8 +91,7 @@ public class UtilityFuntions {
 	    int topY = driver.findElement(by).getLocation().getY();
 		int bottomY = topY+driver.findElement(by).getSize().getHeight();
 		int centerX = driver.findElement(by).getLocation().getX() + (driver.findElement(by).getSize().getWidth()/2);
-		driver.swipe(centerX, bottomY-100, centerX, topY,duration);
-		Thread.sleep(1000);
+		driver.swipe(centerX, bottomY-40, centerX, topY,duration);
 	}
 	
 	public void Clear(By by){

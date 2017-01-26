@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -43,12 +44,45 @@ public class RoundTripBookingTest {
 		wd.tap(test.TapTravelClass);
 		wd.tap(test.ChooseTravelClass);
 		wd.swipeUpElement(test.Scrollup, 2000);
+		//search the flight based on above parameters
 		wd.tap(test.ClickSearchFlight);
-		wd.WaitForDisplay(test.book);
+		wd.WaitForDisplay(test.bookFlight);
+		// select Flights to and from
 		wd.SelectOption(test.selectToFlight);
 		wd.SelectOption(test.selectReturnFlight);
-		wd.tap(test.book);
-			
+		
+		//book flight
+		wd.tap(test.bookFlight);
+		// Review flights
+		wd.WaitForDisplay(test.veriFyFlightFrom);
+		wd.WaitForDisplay(test.veriFyFlightto);
+		if(wd.isenabled(test.ScrollupContinue)){
+		wd.swipeUpElement(test.ScrollupContinue, 5000);
+		wd.swipeUpElement(test.ScrollupContinue, 5000);
+		wd.swipeUpElement(test.ScrollupContinue, 5000);
+		wd.WaitForDisplay(test.ContinueBooking);
+		wd.tap(test.ContinueBooking);
+		//Fill Traveller details
+		wd.WaitForDisplay(test.Details);
+		wd.tap(test.Title);
+		wd.type(test.Fname, "vikas");
+		wd.type(test.lname, "garg");
+		wd.type(test.mobile, "9560684096");
+		wd.type(test.Email, "vikasgarg.mgl@gmail.com");
+		wd.swipeUpElement(test.ScrollupContinue, 2000);
+		wd.tap(test.ContinueBooking);
+		
+		// check Insurance page: No Thanks selected
+		wd.WaitForDisplay(test.Insurance);
+		wd.tap(test.NoThanks);
+		
+		// Make Payment page: Wait till controls loads
+		wd.WaitForDisplay(test.Payment);
+		wd.WaitForDisplay(test.toFromSign);
+		SoftAssert a =new SoftAssert();
+		a.assertTrue(wd.displayed(test.Payment), "Payment page opened");
+		a.assertAll();
+		}
 	}
 	
 	@AfterTest

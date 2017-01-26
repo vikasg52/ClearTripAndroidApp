@@ -11,7 +11,7 @@ public class TestObjects {
 	public By searchCity          =  By.id("com.cleartrip.android:id/filter_edittext");
 	public By citySelectedDel     =  By.name("New Delhi, IN - Indira Gandhi Airport (DEL)") ;
 	public By citySelectedBlr     =  By.name("Bangalore, IN - Kempegowda International Airport (BLR)") ;
-	//public By citySelect          =  By.xpath("//RelativeLayout[@index='0']");
+	//Searching Flight Objects
 	public By tapDatefrom         =  By.id("com.cleartrip.android:id/flight_lyt_depart_date");
 	public By chooseDepartDate    =  By.name("27");
 	public By tapSelectioncorrect =  By.id("com.cleartrip.android:id/correctTick");
@@ -21,10 +21,30 @@ public class TestObjects {
 	public By ChooseTravelClass   =  By.name("Business");
 	public By Scrollup            =  By.xpath("//android.widget.ScrollView[@index='0']");
 	public By ClickSearchFlight   =  By.id("com.cleartrip.android:id/fhf_btn_search_flights");
-	
-	public By book               =  By.name("Book");
+	// Flight Deatils-Review Objects
+	public By bookFlight              =  By.name("Book");
 	public By selectToFlight       =  By.id("com.cleartrip.android:id/list_domestic_onward");
 	public By selectReturnFlight   =  By.id("com.cleartrip.android:id/list_domestic_return");
+	public By veriFyFlightto       =  By.name("New Delhi - Bangalore");
+	public By veriFyFlightFrom     =  By.name("Bangalore - New Delhi");
+	public By ScrollupContinue     =  By.className("android.widget.ScrollView");
+	public By ContinueBooking      =  By.name("Continue booking");
+	
+	//Traveller details-fill objects
+	public By Details  = By.name("Traveller details");
+	public By Title    = By.name("Mr");
+	public By Fname    = By.name("First Name");
+	public By lname    = By.name("Last Name");
+	public By mobile   = By.name("Mobile no");
+	public By Email    = By.name("Email address");
+
+	// Add Insurance to trip
+	public By Insurance= By.name("Add insurance to your trip?");
+	public By NoThanks = By.name("NO THANKS");
+	
+	// Make Payment Page Objects
+	public By Payment  = By.name("Make payment");
+public By toFromSign   = By.name("New Delhi ⇄ Bangalore");
 	
 	
 	
