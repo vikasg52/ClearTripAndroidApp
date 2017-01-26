@@ -32,7 +32,8 @@ public class TestObjects {
 	
 	//Traveller details-fill objects
 	public By Details  = By.name("Traveller details");
-	public By Title    = By.name("Mr");
+	public By tapTitle   =By.name("Title");
+	public By TitleValue  = By.name("Mr");
 	public By Fname    = By.name("First Name");
 	public By lname    = By.name("Last Name");
 	public By mobile   = By.name("Mobile no");

@@ -62,6 +62,9 @@ public class RoundTripBookingTest {
 		wd.swipeUpElement(test.ScrollupContinue, 5000);
 		wd.WaitForDisplay(test.ContinueBooking);
 		wd.tap(test.ContinueBooking);
+		// check Insurance page: No Thanks selected
+		wd.WaitForDisplay(test.Insurance);
+		wd.tap(test.NoThanks);
 		//Fill Traveller details
 		wd.WaitForDisplay(test.Details);
 		wd.tap(test.Title);
@@ -71,10 +74,6 @@ public class RoundTripBookingTest {
 		wd.type(test.Email, "vikasgarg.mgl@gmail.com");
 		wd.swipeUpElement(test.ScrollupContinue, 2000);
 		wd.tap(test.ContinueBooking);
-		
-		// check Insurance page: No Thanks selected
-		wd.WaitForDisplay(test.Insurance);
-		wd.tap(test.NoThanks);
 		
 		// Make Payment page: Wait till controls loads
 		wd.WaitForDisplay(test.Payment);
