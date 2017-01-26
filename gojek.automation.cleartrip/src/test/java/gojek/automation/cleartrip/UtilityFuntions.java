@@ -26,7 +26,7 @@ public class UtilityFuntions {
 			try {
 				System.out.println("Launching the app...");
 				driver= new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"),cap);
-				driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
 				} catch (MalformedURLException e1) {
 				System.out.println("could not start hub due to: "+e1.getMessage());
 			}
