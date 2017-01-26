@@ -61,17 +61,6 @@ public class UtilityFuntions {
 		w.until(ExpectedConditions.elementToBeClickable(by));
 	}
 	
-	public void switchContext(){
-		Set<String> contexts= driver.getContextHandles();
-		for(String context:contexts){
-			driver.context(context);
-		}
-	}
-		public String SwitchToMain(){
-			String maincontext = driver.getContext();
-			driver.context(maincontext);
-			return maincontext;
-		}
 		public void SelectOption(By by){
 		List<AndroidElement> list = driver.findElements(by);
 		list.get(0).click();
@@ -96,6 +85,9 @@ public class UtilityFuntions {
 	
 	public void Clear(By by){
 		driver.findElement(by).clear();
+	}
+	public void hidekeyboard(){
+		driver.hideKeyboard();
 	}
 	
 	public void QuitSession(){

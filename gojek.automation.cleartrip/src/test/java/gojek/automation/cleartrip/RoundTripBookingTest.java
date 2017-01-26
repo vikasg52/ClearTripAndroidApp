@@ -72,7 +72,11 @@ public class RoundTripBookingTest {
 		wd.tap(test.TitleValue);
 		wd.type(test.Fname, "vikas");
 		wd.type(test.lname, "garg");
+		wd.hidekeyboard();
 		wd.type(test.mobile, "9560684096");
+		wd.hidekeyboard();
+		//wd.WaitForDisplay(test.Email);
+		wd.tap(test.Email);
 		wd.type(test.Email, "vikasgarg.mgl@gmail.com");
 		wd.swipeUpElement(test.ScrollupContinue, 2000);
 		wd.tap(test.ContinueBooking);
