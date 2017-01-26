@@ -65,9 +65,11 @@ public class RoundTripBookingTest {
 		// check Insurance page: No Thanks selected
 		wd.WaitForDisplay(test.Insurance);
 		wd.tap(test.NoThanks);
+		
 		//Fill Traveller details
 		wd.WaitForDisplay(test.Details);
-		wd.tap(test.Title);
+		wd.tap(test.tapTitle);
+		wd.tap(test.TitleValue);
 		wd.type(test.Fname, "vikas");
 		wd.type(test.lname, "garg");
 		wd.type(test.mobile, "9560684096");
