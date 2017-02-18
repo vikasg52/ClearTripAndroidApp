@@ -17,7 +17,7 @@ public class UtilityFuntions {
         public AndroidDriver<AndroidElement> LaunchApp(){
 		if(driver==null){
 			DesiredCapabilities cap= new DesiredCapabilities();
-			File app = new File(System.getProperty("user.dir")+"\\src\\test\\resources\\cleartrip.apk");
+			File app = new File(System.getProperty("user.dir")+"\\src\\test\\resources\\cleartrip1.apk");
 			cap.setCapability("platformVersion", "Android");
 			cap.setCapability("deviceName","MPDQWW4161117007847");
 			cap.setCapability("platformVersion","6.0");
@@ -37,7 +37,7 @@ public class UtilityFuntions {
 	public void tap(By by){
 		driver.findElement(by).click();
 	}
-	public AndroidDriver<?> driver(AndroidDriver<?> driver){
+	public AndroidDriver<?> driver(AndroidDriver<AndroidElement> driver){
 		return driver;
 	}
 	

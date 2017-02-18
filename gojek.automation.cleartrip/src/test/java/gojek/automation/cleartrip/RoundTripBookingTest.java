@@ -20,7 +20,6 @@ public class RoundTripBookingTest {
 	@Test
 	public void bookRoundTrip() throws InterruptedException{
 		System.out.println("Test Started.....");
-		
 		wd.WaitForDisplay(test.AllowLocation);
 		wd.tap(test.AllowLocation);
 		wd.WaitForDisplay(test.selectTravel);
